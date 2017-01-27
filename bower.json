@@ -1,0 +1,29 @@
+{
+  "name": "VisitorsCenter",
+  "authors": [
+    "juggleross <ilitejuggler@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AngularDevise": "angular-devise#^1.3.0"
+  },
+  
+  "vendor": {
+  "name": "bower-rails generated vendor assets",
+  "dependencies": {
+    "angular": "v1.5.8",
+    "angular-ui-router": "latest",
+    "angular-devise": "latest"
+  }
+}
+}

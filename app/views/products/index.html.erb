@@ -1,0 +1,16 @@
+<div class="container" ng-app="ProductCenter">
+  <div ng-controller="productsController">
+	  <form ng-submit="addProduct()">
+	  	<input type="text" ng-model="newProduct.name">
+	  	<input type="text" ng-model="newProduct.my_type">
+
+	  	<button type="submit"></button>
+	  </form>
+
+	  <div ng-repeat="product in products">
+	  	<p>{{ product.name }}</p>
+	  	<h1>{{ product.my_type }}</h1>
+	  	<button ng-click="deleteProduct($index)"></button>
+	  </div>
+  </div>
+</div>

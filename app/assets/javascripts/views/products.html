@@ -1,0 +1,20 @@
+<div></div>
+
+<div class="container">
+	  <div ng-show="can('create')">
+		  <form ng-submit="addProduct()">
+		  	<input type="text" ng-model="newProduct.name">
+		  	<input type="text" ng-model="newProduct.my_type">
+
+		  	<button type="submit"></button>
+		  </form>
+      </div>
+
+	  <div ng-repeat="product in products">
+	  	<p>{{ product.name }}</p>
+	  	<h1>{{ product.my_type }}</h1>
+	  	<h1>{{ user.role.user_role}}</h1>
+
+	  	<span ng-show="can('destroy')"><button ng-click="deleteProduct($index)">DELETE</button> </span>
+	  </div>
+</div>

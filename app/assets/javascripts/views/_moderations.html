@@ -1,0 +1,66 @@
+
+<div class="container">
+  <h1>Moderations</h1>
+    <div class="well" ng-show="can('create')">
+      <h3>Add a new Moderation</h3>
+      <form ng-submit="addModeration()">
+        <div class="row">
+          <div class="col-xs-6">
+            <input type="text" ng-model="newModeration.first_name" class="form-control" placeholder="First Name" />
+          </div>
+          <div class="col-xs-6">
+            <input type="text" ng-model="newModeration.last_name" class="form-control" placeholder="Last Name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input type="text" ng-model="newModeration.reason" class="form-control" placeholder="Reason for Visit" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <select ng-model="newVisitor.category_id">
+              <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br />
+            <input type="Submit" value="Add VISITOR" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Currently Visiting</h3>
+    <hr />
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Reason for Visit</th>
+          <th>Category</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="!moderations.length">
+          <td colspan="4">No moderations in the building.</td>
+        </tr>
+        <tr ng-repeat="moderation in moderations">
+          <td>{{ moderation.first_name }}</td>
+          <td>{{ moderation.last_name }}</td>
+          <td>{{ moderation.reason }}</td>
+          <td>{{ showCategory(moderation.category_id) }}</td>
+
+          <td ng-show="can('create')"><a class="btn btn-primary" ng-click="acceptModeration($index)">Accept</a></td>
+          <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteModeration($index)">Remove</a></td>
+
+        </tr>
+      </tbody>
+    </table>
+</div>
