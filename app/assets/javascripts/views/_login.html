@@ -1,17 +1,100 @@
-<div class="page-header">
-  <h1>Log In</h1>
-</div>
+ <!-- Top content -->
 
-<form ng-submit="login()">
-  <div class="input-group">
-    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
-  </div>
-  <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-  </div>
-  <input type="submit" class="btn btn-default" value="Log In">
-</form>
+ <style>
+     body{ 
+    background: url("/assets/1.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  </style>
+  
+        <div class="top-content">
+        	<div class="container">
+                	
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1>Bootstrap Login</h1>
+                        <div class="description">
+                        	<p>
+	                         	Free responsive template made with Bootstrap. 
+	                         	Download it on <a href="http://azmind.com" target="_blank">AZMIND</a>, 
+	                         	customize and use it as you like!
+                       	</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 show-forms">
+                    	
+                    	<span class="show-login-form active">Login</span>
+                    </div>
+                </div>
+                
+              
+                
+                <div class="row register-form">
+                    <div class="col-sm-4 col-sm-offset-1">
+						<form role="form" class="l-form" ng-submit="login()">
+	                    	<div class="form-group">
+	                    		<label class="sr-only" for="l-form-email">Email</label>
+	                        	<input type="text" name="l-form-email" placeholder="Email..." class="l-form-email form-control" id="l-form-email" ng-model="user.email">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label class="sr-only" for="l-form-password">Password</label>
+	                        	<input type="password" name="l-form-password" placeholder="Password..." class="l-form-password form-control" id="l-form-password" ng-model="user.password">
+	                        </div>
+				            <button type="submit" class="btn">Sign in!</button>
+				    	</form>
+				    	<div class="social-login">
+                        	<p>Or login with:</p>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-1" href="/users/auth/facebook" ><i class="fa fa-facebook"></i></a>
+	                        	<a class="btn btn-link-1" href="/users/auth/twitter" ><i class="fa fa-twitter"></i></a>
+	                        	<a class="btn btn-link-1" href="/users/auth/vkontakte"><i class="fa fa-vk"></i></a>
+                        	</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 forms-right-icons">
+						<div class="row">
+							<div class="col-sm-2 icon"><i class="fa fa-user"></i></div>
+							<div class="col-sm-10">
+								<h3>New Features</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2 icon"><i class="fa fa-eye"></i></div>
+							<div class="col-sm-10">
+								<h3>Easy To Use</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2 icon"><i class="fa fa-twitter"></i></div>
+							<div class="col-sm-10">
+								<h3>Social Integrated</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+							</div>
+						</div>
+                    </div>
+                </div>
+                    
+        	</div>
+        </div>
 
-<a href="/users/auth/twitter"><i class="fa fa-twitter-square fa-3x"></i></a>
-<a href="/users/auth/facebook"><i class="fa fa-facebook-square fa-3x"></i></a>
-<a href="/users/auth/vkontakte"><i class="fa fa-vk fa-3x"></i></a>
+                <!-- Footer -->
+      <footer>
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="footer-border"></div>
+              <p>Made by <a href="https://github.com/juggleross" target="_blank">juggleross</a>.</p>
+            </div>
+            
+          </div>
+        </div>
+      </footer>

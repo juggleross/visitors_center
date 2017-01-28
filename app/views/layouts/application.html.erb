@@ -4,6 +4,9 @@
     <title>VisitorsCenter</title>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -11,5 +14,6 @@
   <body class="container">
   	 <div ng-include="'views/navigate.html'"></div>
   	 <ui-view> </ui-view>
+  
   </body>
 </html>
