@@ -15,7 +15,12 @@ class ApplicationController < ActionController::Base
   end
 
   def abilities
-    render json: Ability.new(current_user)
+    # if current_user.nil?
+      
+    # else
+    # byebug
+      render json: Ability.new(current_user)
+    # end
   end
 
   def categories

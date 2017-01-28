@@ -19,6 +19,6 @@ class ModerationsController < ApplicationController
   private 
 
   def moderation_params
-    params.require(:moderation).permit(:first_name, :last_name, :reason, :category_id,)
+    params.require(:moderation).permit(:first_name, :last_name, :reason, :category_id)
   end
 end

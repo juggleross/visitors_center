@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'angularjs-rails'
 gem 'bootstrap-sass'
+gem 'active_bootstrap_skin'
+
 gem 'angular-rails-templates'
 
 gem 'activeadmin', github: 'activeadmin'

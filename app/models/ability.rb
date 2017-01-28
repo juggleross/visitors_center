@@ -2,14 +2,17 @@ class Ability
     include CanCan::Ability
 
     def initialize(user)
-        user ||= User.new
+        user ||= User.new(role_id: Role.find_by(user_role: "guest").id)
 
         if user.has_role? :admin
          can :manage, :all
-        elsif user.has_role? :user
-         can :create, :all # author can create status
+        elsif user.has_role? :guest
+         # can :create, :all # author can create status
          # can :update, :all # author can update status
-         # can :destroy, Status # #uncomment this line, author can destroy status 
+         # can :destroy, :all # #uncomment this line, author can destroy status 
+         can :read, :all
+        elsif user.has_role? :user
+         can :create, :all
          can :read, :all
         else
          can :read, :all

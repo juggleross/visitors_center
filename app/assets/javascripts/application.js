@@ -20,4 +20,5 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require bootstrap-sprockets
+//= require active_bootstrap_skin
 //= require_tree .
