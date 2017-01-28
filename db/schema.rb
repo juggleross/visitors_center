@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20170125160310) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
-    t.integer  "role_id",                default: 4
+    t.integer  "role_id",                default: 1
     t.string   "provider"
     t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
