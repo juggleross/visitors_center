@@ -13,14 +13,14 @@ angular
   $scope.moderations = Moderation.index();
   $scope.categories = Category.index();
 
-  $scope.showCategory = function(id) {
-    var arrLength = $scope.categories.length;
-    for(var i = 0; i < arrLength; i ++) { 
-      if($scope.categories[i].id === id) {
-        return $scope.categories[i].category_name;
-      }
-    }
-  }
+  // $scope.showCategory = function(id) {
+  //   var arrLength = $scope.categories.length;
+  //   for(var i = 0; i < arrLength; i ++) { 
+  //     if($scope.categories[i].id === id) {
+  //       return $scope.categories[i].category_name;
+  //     }
+  //   }
+  // }
 
   
   $scope.addModeration = function() {
@@ -30,7 +30,7 @@ angular
 
   $scope.acceptModeration = function(index) {
     moderation = $scope.moderations[index];
-    accepted_params = {first_name: moderation.first_name,last_name: moderation.last_name, reason: moderation.reason, category_id: moderation.category_id};
+    accepted_params = {first_name: moderation.first_name,last_name: moderation.last_name, reason: moderation.reason, category_id: moderation.category_id, user_id: moderation.user_id};
     Moderation.save(accepted_params);
 
     Moderation.delete(moderation)

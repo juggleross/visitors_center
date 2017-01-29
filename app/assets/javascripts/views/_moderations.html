@@ -1,8 +1,16 @@
-
+ <style>
+     body{ 
+    background: url("/assets/2.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  </style>
 <div class="container">
   <h1>Moderations</h1>
     <div class="well" ng-show="can('create')">
-      <h3>Add a new Moderation</h3>
+      <h3>Add a new Visitor directly</h3>
       <form ng-submit="addModeration()">
         <div class="row">
           <div class="col-xs-6">
@@ -18,14 +26,16 @@
             <input type="text" ng-model="newModeration.reason" class="form-control" placeholder="Reason for Visit" />
           </div>
         </div>
+
         <div class="row">
           <div class="col-xs-12">
             <br />
-            <select ng-model="newVisitor.category_id">
+            <select ng-model="newModeration.category_id">
               <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
             </select>
           </div>
         </div>
+
         <div class="row">
           <div class="col-xs-12 text-center">
             <br />
@@ -37,13 +47,15 @@
 
     <h3>Currently Visiting</h3>
     <hr />
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-visitors-page">
       <thead>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Reason for Visit</th>
           <th>Category</th>
+          <th>Username</th>
+
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -55,7 +67,11 @@
           <td>{{ moderation.first_name }}</td>
           <td>{{ moderation.last_name }}</td>
           <td>{{ moderation.reason }}</td>
-          <td>{{ showCategory(moderation.category_id) }}</td>
+         <!--  <td>{{ showCategory(moderation.category_id) }}</td> -->
+          <td>{{ moderation.category.category_name}}</td>
+
+          <td>{{ moderation.user.username}}</td>
+
 
           <td ng-show="can('create')"><a class="btn btn-primary" ng-click="acceptModeration($index)">Accept</a></td>
           <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteModeration($index)">Remove</a></td>

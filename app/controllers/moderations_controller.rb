@@ -9,7 +9,11 @@ class ModerationsController < ApplicationController
   end
 
   def create
-    respond_with Visitor.create(moderation_params)
+    if moderation_params.keys.include?("user_id")
+      respond_with Visitor.create(moderation_params)
+    else 
+      respond_with Visitor.create(moderation_params.merge(user_id: current_user.id))
+    end
   end
 
   def destroy
@@ -19,6 +23,6 @@ class ModerationsController < ApplicationController
   private 
 
   def moderation_params
-    params.require(:moderation).permit(:first_name, :last_name, :reason, :category_id)
+    params.require(:moderation).permit(:first_name, :last_name, :reason, :category_id, :user, :user_id)
   end
 end

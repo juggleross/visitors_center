@@ -9,7 +9,8 @@ class VisitorsController < ApplicationController
   end
 
   def create
-    respond_with Moderation.create(visitor_params)
+    # respond_with Moderation.create(visitor_params)
+    respond_with Moderation.create(visitor_params.merge(user_id: current_user.id))
   end
 
   def destroy

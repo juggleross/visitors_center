@@ -34,4 +34,9 @@ class User < ApplicationRecord
    def roles
      role.user_role.to_sym unless role.nil?
    end
+
+   def as_json(options = {})
+    # super(options.merge(include: :user))
+    super options.merge(:methods => [:role])
+  end
 end

@@ -15,14 +15,14 @@ angular
   $scope.categories = Category.index();
   // $scope.categories = [1,2,3,4]
 
-  $scope.showCategory = function(id) {
-    var arrLength = $scope.categories.length;
-    for(var i = 0; i < arrLength; i ++) { 
-      if($scope.categories[i].id === id) {
-        return $scope.categories[i].category_name;
-      }
-    }
-  }
+  // $scope.showCategory = function(id) {
+  //   var arrLength = $scope.categories.length;
+  //   for(var i = 0; i < arrLength; i ++) { 
+  //     if($scope.categories[i].id === id) {
+  //       return $scope.categories[i].category_name;
+  //     }
+  //   }
+  // }
 
 
   $scope.addVisitor = function() {
