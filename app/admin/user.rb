@@ -12,11 +12,12 @@ ActiveAdmin.register User do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :role_id, :email, :id
+  permit_params :role_id, :email, :id, :username
   show do
     attributes_table do
       row :id
       row :email
+      row :username
       row :role_id
     end
     active_admin_comments
@@ -26,6 +27,7 @@ ActiveAdmin.register User do
    index do
       column :id
       column :email
+      column :username
       column :role_id
       actions
     end
