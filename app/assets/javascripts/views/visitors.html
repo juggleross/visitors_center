@@ -52,36 +52,56 @@
 
     <h3>Currently Visiting</h3>
     <hr />
-    <table class="table table-bordered table-hover table-visitors-page" >
+    <table class="table table-hover table-striped table-visitors-page" >
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Reason for Visit</th>
+          <th> </th>
+          <th>     First Name, Last Name, Reason</th>
+          <th>Author photo</th>
+          <th>Author name</th>
           <th>Category</th>
-          <th>Username</th>
 
 
           <th ng-show="can('destroy')">&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-show="!visitors.length">
-          <td colspan="4">No visitors in the building.</td>
-        </tr>
-        <tr ng-repeat="visitor in visitors">
-          <td>{{ visitor.first_name }}</td>
-          <td>{{ visitor.last_name }}</td>
-          <td>{{ visitor.reason }}</td>
-         <!--  <td>{{ showCategory(visitor.category_id) }}</td> -->
-         <td>{{ visitor.category.category_name}}</td>
-          <td>{{ visitor.user.username}}</td>
-          
+      <tr ng-show="!visitors.length">
+                                  <td colspan="4">No visitors in the building.</td>
+                                </tr>
 
+                                <tr ng-repeat="visitor in visitors">
+                                    <td>
+                                        <a href="#"><i class="-alt fa fa-2x fa-eye fa-fw"></i></a>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ visitor.first_name }} {{ visitor.last_name }}</b>
+                                        </h4>
+                                        <p>{{ visitor.reason }}</p>
+                                    </td>
+                                    <td>
+                                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ visitor.user.username}}</b>
+                                        </h4>
+                                        <a href="mailto:{{ visitor.user.email}}">{{ visitor.user.email}}</a>
+                                    </td>
+                                    <td>{{ visitor.category.category_name}}</td>
+                                    <td>
+                                        
+                                            <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button"
+                                            ng-click="deleteVisitor($index)">
+                                                <i class="fa fa-fw s fa-remove"></i>Remove</></a>
 
-          <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteVisitor($index)">Remove</a></td>
-          <td ng-show="can('update')"><a class="btn btn-default" href="#!/visitors/{{visitor.id}}/edit">Edit</a></td>
-        </tr>
+                                            <a href="#!/visitors/{{visitor.id}}/edit" ng-show="can('update')" class="btn btn-md btn-info" value="right" role="button">
+                                                <i class="fa fa-fw fa-cog"></i>Edit</a>
+                                       
+                                    </td>
+                                </tr>    
       </tbody>
     </table>
 </div>
+
