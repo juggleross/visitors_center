@@ -61,6 +61,7 @@
           <th>Category</th>
           <th>Username</th>
 
+
           <th ng-show="can('destroy')">&nbsp;</th>
         </tr>
       </thead>
@@ -79,6 +80,7 @@
 
 
           <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteVisitor($index)">Remove</a></td>
+          <td ng-show="can('update')"><a class="btn btn-default" href="#!/visitors/{{visitor.id}}/edit">Edit</a></td>
         </tr>
       </tbody>
     </table>

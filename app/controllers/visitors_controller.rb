@@ -17,6 +17,14 @@ class VisitorsController < ApplicationController
     respond_with Visitor.destroy(params[:id])
   end
 
+  def update
+    respond_with Visitor.find(params[:id]).update_attributes(visitor_params)
+  end
+
+  def show
+    respond_with Visitor.find(params[:id])
+  end
+
  
 
   private

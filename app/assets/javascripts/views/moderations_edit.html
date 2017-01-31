@@ -1,0 +1,43 @@
+ <div class="container">
+ <h1>Moderations</h1>
+    <div class="well"  >
+      <h3>Update Moderation</h3>
+      <form ng-submit="updateModeration()" ng-show="can('update')">
+        <div class="row">
+          <div class="col-xs-6">
+            <input type="text" ng-model="newModeration.first_name" class="form-control" placeholder="First Name" />
+          </div>
+          <div class="col-xs-6">
+            <input type="text" ng-model="newModeration.last_name" class="form-control" placeholder="Last Name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input type="text" ng-model="newModeration.reason" class="form-control" placeholder="Reason for Visit" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <select ng-model="newModeration.category_id">
+              <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
+            </select>
+
+            <!-- <select ng-model="newModeration.category" ng-options="x.category_name for x in categories">
+           </select>  -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br />
+            <input type="Submit" value="Update newModeration" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+
+

@@ -1,15 +1,17 @@
 angular
 .module('VisitorCenter')
 .factory("Moderation", function($resource) {
-  return $resource("moderations/:id", { id: '@id' }, {
+  return $resource("moderations/:id.json", { id: '@id' }, {
+    show: { method: 'GET' },
     index:   { method: 'GET', isArray: true, responseType: 'json' },
     update:  { method: 'PUT', responseType: 'json' }
   });
 })
 
+
 angular
 .module('VisitorCenter')
-.controller("moderationsController", function($scope, Moderation, Ability, Category) {
+.controller("moderationsController", function($scope, Moderation, Ability, Category, $stateParams, $location) {
   $scope.moderations = Moderation.index();
   $scope.categories = Category.index();
 
@@ -21,6 +23,12 @@ angular
   //     }
   //   }
   // }
+  $scope.newModeration = Moderation.get({id: $stateParams.id})
+  $scope.updateModeration = function(){ 
+      Moderation.update({id: $scope.newModeration.id},{moderation: $scope.newModeration},function(){
+        $location.path('/moderations');
+      })
+  };
 
   
   $scope.addModeration = function() {
@@ -65,6 +73,11 @@ angular
     .state('moderations', {
       url: '/moderations',
       templateUrl: 'views/_moderations.html',
+      controller: 'moderationsController'
+    })
+    .state('moderations_edit', {
+      url: '/moderations/:id/edit',
+      templateUrl: 'views/moderations_edit.html',
       controller: 'moderationsController'
     })
 });

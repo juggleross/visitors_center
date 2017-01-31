@@ -16,6 +16,14 @@ class ModerationsController < ApplicationController
     end
   end
 
+  def update
+    respond_with Moderation.find(params[:id]).update_attributes(moderation_params)
+  end
+
+  def show
+    respond_with Moderation.find(params[:id])
+  end
+
   def destroy
     respond_with Moderation.destroy(params[:id])
   end

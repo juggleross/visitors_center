@@ -75,6 +75,7 @@
 
           <td ng-show="can('create')"><a class="btn btn-primary" ng-click="acceptModeration($index)">Accept</a></td>
           <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteModeration($index)">Remove</a></td>
+           <td ng-show="can('update')"><a href="#!/moderations/{{moderation.id}}/edit" class="btn btn-default">Edit</a></td>
 
         </tr>
       </tbody>

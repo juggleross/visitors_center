@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :visitors, only: [:index, :create, :destroy], defaults: {format: :json}
+  resources :visitors, defaults: {format: :json}
   
   resources :products, only: [:index, :create, :destroy], defaults: {format: :json}
 
-  resources :moderations, only: [:index, :create, :destroy], defaults: {format: :json}
+  resources :moderations, defaults: {format: :json}
 end

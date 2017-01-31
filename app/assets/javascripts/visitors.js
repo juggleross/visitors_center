@@ -2,7 +2,8 @@
 angular
 .module('VisitorCenter')
 .factory("Visitor", function($resource) {
-  return $resource("visitors/:id", { id: '@id' }, {
+  return $resource("visitors/:id.json", { id: '@id' }, {
+    show: { method: 'GET' },
     index:   { method: 'GET', isArray: true, responseType: 'json' },
     update:  { method: 'PUT', responseType: 'json' }
   });
@@ -10,7 +11,7 @@ angular
 
 angular
 .module('VisitorCenter')
-.controller("visitorsController", function($scope, Visitor, Ability, Category, Auth) {
+.controller("visitorsController", function($scope, Visitor, Ability, Category, Auth,$stateParams, $location) {
   $scope.visitors = Visitor.index();
   $scope.categories = Category.index();
   // $scope.categories = [1,2,3,4]
@@ -23,6 +24,13 @@ angular
   //     }
   //   }
   // }
+
+  $scope.newVisitor = Visitor.get({id: $stateParams.id})
+  $scope.updateVisitor = function(){ 
+      Visitor.update({id: $scope.newVisitor.id},{visitor: $scope.newVisitor},function(){
+        $location.path('/visitors');
+      })
+  };
 
 
   $scope.addVisitor = function() {
@@ -57,6 +65,22 @@ angular
 
 })
 
+// angular
+// .module('VisitorCenter')
+// .controller("visitorsUpdateController", function($scope, $location,Visitor, Ability, Category, Auth,$stateParams) {
+//   $scope.visitors = Visitor.index();
+//   $scope.categories = Category.index();
+
+//   $scope.newVisitor = Visitor.get({id: $stateParams.id})
+//   $scope.updateVisitor = function(){ 
+//       Visitor.update({id: $scope.newVisitor.id},{visitor: $scope.newVisitor},function(){
+//         $location.path('/visitors');
+//       })
+//   };
+
+
+// })
+
 angular
 .module('VisitorCenter')
 .config(function($stateProvider, $urlRouterProvider) {
@@ -66,4 +90,10 @@ angular
       templateUrl: 'views/visitors.html',
       controller: 'visitorsController'
     })
+    .state('visitors_edit', {
+      url: '/visitors/:id/edit',
+      templateUrl: 'views/visitors_edit.html',
+      controller: 'visitorsController'
+    })
+    $urlRouterProvider.otherwise('/visitors')
 });
