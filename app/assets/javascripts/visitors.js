@@ -5,7 +5,7 @@ angular
   return $resource("visitors/:id.json", { id: '@id' }, {
     show: { method: 'GET'},
     index:   { method: 'GET', isArray: true, responseType: 'json' },
-    update:  { method: 'PUT', responseType: 'json' }
+    update:  { method: 'PUT', responseType: 'json' },
   });
 })
 
@@ -15,15 +15,6 @@ angular
   $scope.visitors = Visitor.index();
   $scope.categories = Category.index();
   $scope.moderations = Visitor.index();
-  // $scope.categories = [1,2,3,4]
-  // $scope.showCategory = function(id) {
-  //   var arrLength = $scope.categories.length;
-  //   for(var i = 0; i < arrLength; i ++) { 
-  //     if($scope.categories[i].id === id) {
-  //       return $scope.categories[i].category_name;
-  //     }
-  //   }
-  // }
 
   // rejection part
   $scope.shouldShowRejection = function(value) {
@@ -33,27 +24,24 @@ angular
 
   // moderations part
 
+  $scope.newModeration = {category_visitors: [{category: ''}]}
+  $scope.addCategoryModeration = function(){
+    $scope.newModeration.category_visitors.push({category: ''})
+  }
+
   $scope.shouldShowModeration = function(value) {
     return (value === "moderation");
   }
 
-  
   $scope.acceptModerationVisitor = function(local_moderation){ 
     local_moderation.state = "acception"
     Visitor.update({id: local_moderation.id},{visitor: local_moderation});
   };
 
-
-  $scope.newModeration = Visitor.get({id: $stateParams.id})
-  $scope.updateModeration = function(){ 
-      Visitor.update({id: $scope.newModeration.id},{visitor: $scope.newModeration},function(){
-        $location.path('/moderations');
-      })
-  };
-
   $scope.addModeration = function() {
     $scope.newModeration.state = "acception"
-    moderation = Visitor.save($scope.newModeration)
+
+    moderation = Visitor.save({visitor: $scope.newModeration})
     $scope.newModeration = {}
   }
 
@@ -64,12 +52,21 @@ angular
 
   // visitor parts
 
-  $scope.newVisitor = Visitor.get({id: $stateParams.id})
-  $scope.updateVisitor = function(){ 
-      Visitor.update({id: $scope.newVisitor.id},{visitor: $scope.newVisitor},function(){
-        $location.path('/visitors');
-      })
+  $scope.newVisitor = {category_visitors: [{category: ''}]}
+
+  $scope.addCategory = function(){
+    $scope.newVisitor.category_visitors.push({category: ''})
+  }
+
+  $scope.removeCategory = function(index, visitor){
+    var category = visitor.category_visitors[index];
+    if(category.id){
+      category._destroy = true;
+    }else{
+      visitor.category_visitors.splice(index, 1);
+    }
   };
+
 
   $scope.shouldShow = function(value){ 
       return (value === 'acception');
@@ -77,7 +74,8 @@ angular
 
 
   $scope.addVisitor = function() {
-    visitor = Visitor.save($scope.newVisitor)
+    console.log($scope.newVisitor)
+    visitor = Visitor.save({visitor: $scope.newVisitor})
     // $scope.visitors.push(visitor)
     $scope.newVisitor = {}
   }
@@ -93,6 +91,60 @@ angular
     $scope.user = user;
   });
   
+
+  $scope.abilities = Ability.index();
+
+  $scope.can = function(can_action){
+
+    var arrLength = $scope.abilities.length;
+    for(var i = 0; i < arrLength; i ++) { 
+      if($scope.abilities[i].actions.indexOf(can_action) >= 0) {
+        return $scope.abilities[i].can;
+      }
+    }
+  };
+
+})
+
+angular
+.module('VisitorCenter')
+.controller("visitorsUpdateController", function($scope, Visitor, Ability, Category, Auth,$stateParams, $location) {
+  $scope.categories = Category.index();
+
+  $scope.newVisitor = Visitor.get({id: $stateParams.id})
+  $scope.updateVisitor = function(){ 
+      Visitor.update({id: $scope.newVisitor.id},{visitor: $scope.newVisitor},function(){
+        $location.path('/visitors');
+      })
+  };
+
+  $scope.addCategory = function(){
+    $scope.newVisitor.category_visitors.push({category: ''})
+  }
+
+  $scope.removeCategory = function(index, visitor){
+    var category = visitor.category_visitors[index];
+    if(category.id){
+      category._destroy = true;
+    }else{
+      visitor.category_visitors.splice(index, 1);
+    }
+  };
+
+  $scope.newModeration = Visitor.get({id: $stateParams.id})
+  $scope.updateModeration = function(){ 
+      Visitor.update({id: $scope.newModeration.id},{visitor: $scope.newModeration},function(){
+        $location.path('/moderations');
+      })
+  };
+  
+  $scope.addCategoryModeration = function(){
+    $scope.newModeration.category_visitors.push({category: ''})
+  }
+
+  Auth.currentUser().then(function (user){
+    $scope.user = user;
+  });
 
   $scope.abilities = Ability.index();
 
@@ -136,7 +188,7 @@ angular
     .state('visitors_edit', {
       url: '/visitors/:id/edit',
       templateUrl: 'views/visitors_edit.html',
-      controller: 'visitorsController'
+      controller: 'visitorsUpdateController'
     })
     .state('moderations', {
       url: '/moderations',
@@ -146,7 +198,7 @@ angular
     .state('moderations_edit', {
       url: '/moderations/:id/edit',
       templateUrl: 'views/moderations_edit.html',
-      controller: 'visitorsController'
+      controller: 'visitorsUpdateController'
     })
     .state('rejections', {
       url: '/rejections',

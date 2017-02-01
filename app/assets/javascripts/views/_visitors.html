@@ -5,6 +5,7 @@
     <!-- ng-show="can('create')" -->
     <div class="well"  ng-show="can('create')">
       <h3>Add a new Visitor</h3>
+
       <form ng-submit="addVisitor()">
         <div class="row">
           <div class="col-xs-6">
@@ -24,14 +25,24 @@
         <div class="row">
           <div class="col-xs-12">
             <br />
-            <select ng-model="newVisitor.category_id">
+            <!-- <select ng-model="newVisitor.category_id">
               <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
-            </select>
+            </select> -->
 
+            <div ng-repeat="category in newVisitor.category_visitors">
+                <select ng-model="category.category">
+                    <option ng-repeat="x in categories" value="{{x.category_name}}">{{x.category_name}}</option>
+                </select>
+                <a ng-click="removeCategory($index, newVisitor)" class="btn btn-xs btn-danger">X</a>
+                 <a ng-click="addCategory()" class="btn btn-success btn-xs">+ Add category </a>
+            </div>
             <!-- <select ng-model="newVisitor.category" ng-options="x.category_name for x in categories">
            </select>  -->
           </div>
         </div>
+
+    
+
 
         <div class="row">
           <div class="col-xs-12 text-center">
@@ -71,6 +82,7 @@
                                             <b>{{ visitor.first_name }} {{ visitor.last_name }}</b>
                                         </h4>
                                         <p>{{ visitor.reason }}</p>
+                                        <!-- <p>{{visitor.category_visitors}}</p> -->
                                     </td>
                                     <td>
                                         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
@@ -81,7 +93,9 @@
                                         </h4>
                                         <a href="mailto:{{ visitor.user.email}}">{{ visitor.user.email}}</a>
                                     </td>
-                                    <td>{{ visitor.category.category_name}}</td>
+                                    <td>  <div ng-repeat="current_category in visitor.category_visitors"> 
+                                            <p>{{current_category.category}}</p>
+                                        </div></td>
                                     <td>
                                         
                                             <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button"

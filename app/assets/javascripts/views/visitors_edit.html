@@ -21,12 +21,15 @@
         <div class="row">
           <div class="col-xs-12">
             <br />
-            <select ng-model="newVisitor.category_id">
-              <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
-            </select>
-
-            <!-- <select ng-model="newVisitor.category" ng-options="x.category_name for x in categories">
-           </select>  -->
+            <div ng-repeat="category in newVisitor.category_visitors">
+              <div ng-hide="category._destroy">
+                <select ng-model="category.category">
+                    <option ng-repeat="x in categories" value="{{x.category_name}}">{{x.category_name}}</option>
+                </select>
+                <a ng-click="removeCategory($index, newVisitor)" class="btn btn-xs btn-danger">X</a>
+                 <a ng-click="addCategory()" class="btn btn-success btn-xs">+ Add category </a>
+              </div>
+            </div>     
           </div>
         </div>
 

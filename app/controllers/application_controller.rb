@@ -15,12 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def abilities
-    # if current_user.nil?
-      
-    # else
-    # byebug
       render json: Ability.new(current_user)
-    # end
   end
 
   def categories
@@ -34,10 +29,6 @@ protected
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_up) << :username
-  # end
 
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me, :role_id]

@@ -1,3 +1,4 @@
+ <div ng-show="can('manage')">
   <h3>Currently Visiting</h3>
     <hr />
     <table class="table table-hover table-striped table-visitors-page" >
@@ -47,3 +48,10 @@
                                 </tr>    
       </tbody>
     </table>
+</div>
+<div ng-hide="can('manage')">
+<h1>Reection</h1>
+<h1>Rejection</h1>
+
+  <p>You do not have access to rejection</p>
+</div>

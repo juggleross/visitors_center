@@ -35,6 +35,13 @@ class VisitorsController < ApplicationController
   private
   
   def visitor_params
-    params.require(:visitor).permit(:first_name, :last_name, :reason, :category_id, :state, :user_id)
+    unless params["visitor"]["category_visitors"].blank?
+      params["visitor"]["category_visitors_attributes"] = params["visitor"]["category_visitors"]
+      params["visitor"].delete("category_visitors")
+    end
+    params.require(:visitor).permit(:first_name, :last_name, :reason, :category_id,
+     :state, :user_id, :category_visitors,
+     :category_visitors_attributes => [:id,:category, :_destroy, :visitor_id])
   end
+
 end
