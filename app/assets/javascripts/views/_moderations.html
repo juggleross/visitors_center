@@ -1,12 +1,3 @@
- <style>
-     body{ 
-    background: url("/assets/2.jpg") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-  </style>
 <div class="container">
   <h1>Moderations</h1>
     <div class="well" ng-show="can('create')">
@@ -47,37 +38,55 @@
 
     <h3>Currently Visiting</h3>
     <hr />
-    <table class="table table-bordered table-visitors-page">
+    <table class="table table-hover table-striped table-visitors-page" >
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Reason for Visit</th>
+          <th> </th>
+          <th>     First Name, Last Name, Reason</th>
+          <th>Author photo</th>
+          <th>Author name</th>
           <th>Category</th>
-          <th>Username</th>
 
-          <th>&nbsp;</th>
+
+          <th ng-show="can('destroy')">&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-show="!moderations.length">
-          <td colspan="4">No moderations in the building.</td>
-        </tr>
-        <tr ng-repeat="moderation in moderations">
-          <td>{{ moderation.first_name }}</td>
-          <td>{{ moderation.last_name }}</td>
-          <td>{{ moderation.reason }}</td>
-         <!--  <td>{{ showCategory(moderation.category_id) }}</td> -->
-          <td>{{ moderation.category.category_name}}</td>
+      <tr ng-show="!moderations.length">
+                                  <td colspan="4">No visitors in the building.</td>
+                                </tr>
 
-          <td>{{ moderation.user.username}}</td>
+                                <tr ng-repeat="moderation in moderations">
+                                    <td>
+                                        <a href="#"><i class="-alt fa fa-2x fa-eye fa-fw"></i></a>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ moderation.first_name }} {{ moderation.last_name }}</b>
+                                        </h4>
+                                        <p>{{ moderation.reason }}</p>
+                                    </td>
+                                    <td>
+                                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ moderation.user.username}}</b>
+                                        </h4>
+                                        <a href="mailto:{{ moderation.user.email}}">{{ moderation.user.email}}</a>
+                                    </td>
+                                    <td>{{ moderation.category.category_name}}</td>
+                                    <td>
+                                          <a  ng-show="can('create')" class="btn btn-primary btn-md"   ng-click="acceptModeration($index)">Accept</a>
+                                            <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button"
+                                            ng-click="deleteModeration($index)">
+                                                <i class="fa fa-fw s fa-remove"></i>Remove</></a>
 
-
-          <td ng-show="can('create')"><a class="btn btn-primary" ng-click="acceptModeration($index)">Accept</a></td>
-          <td ng-show="can('destroy')"><a class="btn btn-danger" ng-click="deleteModeration($index)">Remove</a></td>
-           <td ng-show="can('update')"><a href="#!/moderations/{{moderation.id}}/edit" class="btn btn-default">Edit</a></td>
-
-        </tr>
+                                            <a href="#!/moderations/{{moderation.id}}/edit" ng-show="can('update')" class="btn btn-md btn-info" value="right" role="button">
+                                                <i class="fa fa-fw fa-cog"></i>Edit</a>
+                                       
+                                    </td>
+                                </tr>    
       </tbody>
     </table>
 </div>
