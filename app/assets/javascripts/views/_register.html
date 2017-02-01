@@ -1,101 +1,85 @@
- <!-- Top content -->
-
-        <div class="top-content">
-          <div class="container">
-                  
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1>Visitor Center Register</h1>
-                        <div class="description">
-                          <p>
-                            Website made with Rails, AngularJS and Bootstrap.
-                            
-                        </p>
-                        </div>
-                    </div>
+<!-- Top content -->
+<div class="top-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text">
+                <h1>Visitor Center Register</h1>
+                <div class="description">
+                    <p>
+                        Website made with Rails, AngularJS and Bootstrap.
+                    </p>
                 </div>
-                
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 show-forms">
-                      <span class="show-register-form active">Register</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 show-forms">
+                <span class="show-register-form active">Register</span>
+            </div>
+        </div>
+        <div class="row register-form">
+            <div class="col-sm-4 col-sm-offset-1">
+                <form role="form" class="r-form" ng-submit="register()">
+                    <div class="form-group">
+                        <label class="sr-only" for="r-form-first-name">First name</label>
+                        <input type="text" name="r-form-first-name" placeholder="First name..." class="r-form-first-name form-control" ng-model="user.username">
                     </div>
-                </div>
-                
-                <div class="row register-form" >
-                    <div class="col-sm-4 col-sm-offset-1">
-            <form role="form" class="r-form" ng-submit="register()">
-                        <div class="form-group">
-                          <label class="sr-only" for="r-form-first-name">First name</label>
-                            <input type="text" name="r-form-first-name" placeholder="First name..." class="r-form-first-name form-control" ng-model="user.username">
-                          </div>
-                         
-                          <div class="form-group">
-                            <label class="sr-only" for="r-form-email">Email</label>
-                            <input type="text" name="r-form-email" placeholder="Email..." class="r-form-email form-control" id="r-form-email" ng-model="user.email">
-                          </div>
-
-                            <div class="form-group">
-                            <label class="sr-only" for="l-form-password">Password</label>
-                            <input type="password" name="l-form-password" placeholder="Password..." class="l-form-password form-control" id="l-form-password" ng-model="user.password">
-                          </div>
-
-                           <div class="form-group">
-                            <label class="sr-only" for="l-form-password">Password</label>
-                            <input type="password" name="l-form-password" placeholder="Password..." class="l-form-password form-control" id="l-form-password" ng-model="user.password_confirmation">
-                          </div>
-                       
+                    <div class="form-group">
+                        <label class="sr-only" for="r-form-email">Email</label>
+                        <input type="text" name="r-form-email" placeholder="Email..." class="r-form-email form-control" id="r-form-email" ng-model="user.email">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="l-form-password">Password</label>
+                        <input type="password" name="l-form-password" placeholder="Password..." class="l-form-password form-control" id="l-form-password" ng-model="user.password">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="l-form-password">Password</label>
+                        <input type="password" name="l-form-password" placeholder="Password..." class="l-form-password form-control" id="l-form-password" ng-model="user.password_confirmation">
+                    </div>
                     <button type="submit" class="btn">Sign me up!</button>
-            </form>
-
-            <div class="social-login">
-                          <p>Or sign up with:</p>
-                          <div class="social-login-buttons">
-                            <a class="btn btn-link-1" href="/users/auth/facebook" ><i class="fa fa-facebook"></i></a>
-                            <a class="btn btn-link-1" href="/users/auth/twitter" ><i class="fa fa-twitter"></i></a>
-                            <a class="btn btn-link-1" href="/users/auth/vkontakte"><i class="fa fa-vk"></i></a>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 forms-right-icons">
-            <div class="row">
-              <div class="col-sm-2 icon"><i class="fa fa-pencil"></i></div>
-              <div class="col-sm-10">
-                <h3>Beautiful Forms</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2 icon"><i class="fa fa-commenting"></i></div>
-              <div class="col-sm-10">
-                <h3>Awesome Login</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2 icon"><i class="fa fa-magic"></i></div>
-              <div class="col-sm-10">
-                <h3>Great Registration</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-              </div>
-            </div>
+                </form>
+                <div class="social-login">
+                    <p>Or sign up with:</p>
+                    <div class="social-login-buttons">
+                        <a class="btn btn-link-1" href="/users/auth/facebook"><i class="fa fa-facebook"></i></a>
+                        <a class="btn btn-link-1" href="/users/auth/twitter"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-link-1" href="/users/auth/vkontakte"><i class="fa fa-vk"></i></a>
                     </div>
                 </div>
-                
-
-                    
-          </div>
-        </div>
-
-                <!-- Footer -->
-      <footer>
-        <div class="container">
-          <div class="row">
-            
-            <div class="col-sm-8 col-sm-offset-2">
-              <div class="footer-border"></div>
-              <p>Made by <a href="https://github.com/juggleross" target="_blank">juggleross</a>.</p>
             </div>
-            
-          </div>
+            <div class="col-sm-6 forms-right-icons">
+                <div class="row">
+                    <div class="col-sm-2 icon"><i class="fa fa-pencil"></i></div>
+                    <div class="col-sm-10">
+                        <h3>Beautiful Forms</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 icon"><i class="fa fa-commenting"></i></div>
+                    <div class="col-sm-10">
+                        <h3>Awesome Login</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 icon"><i class="fa fa-magic"></i></div>
+                    <div class="col-sm-10">
+                        <h3>Great Registration</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </footer>
+    </div>
+</div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border"></div>
+                <p>Made by <a href="https://github.com/juggleross" target="_blank">juggleross</a>.</p>
+            </div>
+        </div>
+    </div>
+</footer>
