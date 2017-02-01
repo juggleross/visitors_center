@@ -308,7 +308,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   omniauth-vkontakte
-  pg (= 0.17.1)
+  pg (~> 0.17.1)
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails_12factor (= 0.0.2)
