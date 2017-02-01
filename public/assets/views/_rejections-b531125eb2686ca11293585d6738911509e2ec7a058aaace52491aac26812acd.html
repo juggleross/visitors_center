@@ -1,0 +1,53 @@
+<div ng-show="can('manage')">
+    <h3>Currently Visiting</h3>
+    <hr />
+    <table class="table table-hover table-striped table-visitors-page">
+        <thead>
+            <tr>
+                <th> </th>
+                <th> First Name, Last Name, Reason</th>
+                <th>Author photo</th>
+                <th>Author name</th>
+                <th>Category</th>
+                <th ng-show="can('destroy')">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-show="!visitors.length">
+                <td colspan="4">No visitors in the building.</td>
+            </tr>
+            <tr ng-repeat="visitor in visitors" ng-show="shouldShowRejection(visitor.state)">
+                <td>
+                    <a href="#"><i class="-alt fa fa-2x fa-eye fa-fw"></i></a>
+                </td>
+                <td>
+                    <h4>
+                                            <b>{{ visitor.first_name }} {{ visitor.last_name }}</b>
+                                        </h4>
+                    <p>{{ visitor.reason }}</p>
+                </td>
+                <td>
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
+                </td>
+                <td>
+                    <h4>
+                                            <b>{{ visitor.user.username}}</b>
+                                        </h4>
+                    <a href="mailto:{{ visitor.user.email}}">{{ visitor.user.email}}</a>
+                </td>
+                <td>{{ visitor.category.category_name}}</td>
+                <td>
+                    <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button" ng-click="deleteVisitor($index)">
+                        <i class="fa fa-fw s fa-remove"></i>Remove
+                        </>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-hide="can('manage')">
+    <h1>Reection</h1>
+    <h1>Rejection</h1>
+    <p>You do not have access to rejection</p>
+</div>

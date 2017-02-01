@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Visitors</h1>
+    <div class="well">
+        <h3>Update Visitor</h3>
+        <form ng-submit="updateVisitor()" ng-show="can('update')">
+            <div class="row">
+                <div class="col-xs-6">
+                    <input type="text" ng-model="newVisitor.first_name" class="form-control" placeholder="First Name" />
+                </div>
+                <div class="col-xs-6">
+                    <input type="text" ng-model="newVisitor.last_name" class="form-control" placeholder="Last Name" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <br />
+                    <input type="text" ng-model="newVisitor.reason" class="form-control" placeholder="Reason for Visit" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <br />
+                    <div ng-repeat="category in newVisitor.category_visitors">
+                        <div ng-hide="category._destroy">
+                            <select ng-model="category.category">
+                                <option ng-repeat="x in categories" value="{{x.category_name}}">{{x.category_name}}</option>
+                            </select>
+                            <a ng-click="removeCategory($index, newVisitor)" class="btn btn-xs btn-danger">X</a>
+                            <a ng-click="addCategory()" class="btn btn-success btn-xs">+ Add category </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <br />
+                    <input type="Submit" value="Update newVisitor" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
