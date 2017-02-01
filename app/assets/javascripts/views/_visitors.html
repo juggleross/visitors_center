@@ -1,0 +1,99 @@
+ 
+
+<div class="container">
+  <h1>Visitors</h1>
+    <!-- ng-show="can('create')" -->
+    <div class="well"  ng-show="can('create')">
+      <h3>Add a new Visitor</h3>
+      <form ng-submit="addVisitor()">
+        <div class="row">
+          <div class="col-xs-6">
+            <input type="text" ng-model="newVisitor.first_name" class="form-control" placeholder="First Name" />
+          </div>
+          <div class="col-xs-6">
+            <input type="text" ng-model="newVisitor.last_name" class="form-control" placeholder="Last Name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input type="text" ng-model="newVisitor.reason" class="form-control" placeholder="Reason for Visit" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <select ng-model="newVisitor.category_id">
+              <option ng-repeat="x in categories" value="{{x.id}}">{{x.category_name}}</option>
+            </select>
+
+            <!-- <select ng-model="newVisitor.category" ng-options="x.category_name for x in categories">
+           </select>  -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br />
+            <input type="Submit" value="Add Visitor" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Currently Visiting</h3>
+    <hr />
+    <table class="table table-hover table-striped table-visitors-page" >
+      <thead>
+        <tr>
+          <th> </th>
+          <th>     First Name, Last Name, Reason</th>
+          <th>Author photo</th>
+          <th>Author name</th>
+          <th>Category</th>
+
+
+          <th ng-show="can('destroy')">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr ng-show="!visitors.length">
+                                  <td colspan="4">No visitors in the building.</td>
+                                </tr>
+
+                                <tr ng-repeat="visitor in visitors" ng-show="shouldShow(visitor.state)">
+                                    <td>
+                                        <a href="#"><i class="-alt fa fa-2x fa-eye fa-fw"></i></a>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ visitor.first_name }} {{ visitor.last_name }}</b>
+                                        </h4>
+                                        <p>{{ visitor.reason }}</p>
+                                    </td>
+                                    <td>
+                                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>{{ visitor.user.username}}</b>
+                                        </h4>
+                                        <a href="mailto:{{ visitor.user.email}}">{{ visitor.user.email}}</a>
+                                    </td>
+                                    <td>{{ visitor.category.category_name}}</td>
+                                    <td>
+                                        
+                                            <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button"
+                                            ng-click="deleteVisitor($index)">
+                                                <i class="fa fa-fw s fa-remove"></i>Remove</></a>
+
+                                            <a href="#!/visitors/{{visitor.id}}/edit" ng-show="can('update')" class="btn btn-md btn-info" value="right" role="button">
+                                                <i class="fa fa-fw fa-cog"></i>Edit</a>
+                                       
+                                    </td>
+                                </tr>    
+      </tbody>
+    </table>
+</div>
+

@@ -10,8 +10,4 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :visitors, defaults: {format: :json}
-  
-  resources :products, only: [:index, :create, :destroy], defaults: {format: :json}
-
-  resources :moderations, defaults: {format: :json}
 end

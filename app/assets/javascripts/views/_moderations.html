@@ -56,7 +56,8 @@
                                   <td colspan="4">No visitors in the building.</td>
                                 </tr>
 
-                                <tr ng-repeat="moderation in moderations">
+                                <tr ng-repeat="moderation in moderations" ng-show="shouldShowModeration(moderation.state)">
+                               
                                     <td>
                                         <a href="#"><i class="-alt fa fa-2x fa-eye fa-fw"></i></a>
                                     </td>
@@ -65,6 +66,10 @@
                                             <b>{{ moderation.first_name }} {{ moderation.last_name }}</b>
                                         </h4>
                                         <p>{{ moderation.reason }}</p>
+                                        <p>{{ moderation.state }}</p>
+
+                                        
+
                                     </td>
                                     <td>
                                         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
@@ -76,17 +81,19 @@
                                         <a href="mailto:{{ moderation.user.email}}">{{ moderation.user.email}}</a>
                                     </td>
                                     <td>{{ moderation.category.category_name}}</td>
-                                    <td>
-                                          <a  ng-show="can('create')" class="btn btn-primary btn-md"   ng-click="acceptModeration($index)">Accept</a>
+                                    <td >
+                                          <a  ng-show="can('create')" class="btn btn-primary btn-md"   ng-click="acceptModerationVisitor(moderation)">AcceptVisitor</a>
+
                                             <a ng-show="can('destroy')" class="btn btn-danger btn-md" value="left" type="button"
-                                            ng-click="deleteModeration($index)">
-                                                <i class="fa fa-fw s fa-remove"></i>Remove</></a>
+                                            ng-click="rejectModeration(moderation)">
+                                                <i class="fa fa-fw s fa-remove"></i>Reject</></a>
 
                                             <a href="#!/moderations/{{moderation.id}}/edit" ng-show="can('update')" class="btn btn-md btn-info" value="right" role="button">
                                                 <i class="fa fa-fw fa-cog"></i>Edit</a>
                                        
                                     </td>
-                                </tr>    
+
+                                </tr> 
       </tbody>
     </table>
 </div>
