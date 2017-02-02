@@ -8,10 +8,10 @@
 		5. rake db:seed
 
 		# ActiveAdmin 
-			admin@tut.by
+			admin@example.com	
 			'password'
 		# ordinary admin
-			admin@example.com
+			admin@tut.by
 			'password'
 
 ## Registration page
